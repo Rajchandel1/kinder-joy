@@ -1,0 +1,298 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+.header{
+    text-align: center;
+    color: white;
+}
+
+.wrapper{
+    height: 100vh;
+    width: 100%;
+    padding: 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, pink, violet);
+    flex-direction: column;
+}
+
+.kinder-joy-container{
+    height: 80vh;
+    width: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.cover{
+    position: absolute;
+    filter: drop-shadow(0px 0px 10px,red);
+    z-index: 99;
+}
+
+.cover img{
+    height: 70vh;
+    filter: drop-shadow(0px 0px 10px,red);
+    filter: drop-shadow(0px 0px 10px gray);
+
+}
+
+.surprise-item{
+    height: 50vh;
+    width: 37vh;
+    display: block;
+    -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background-color: white;
+    box-shadow: 0px 0px 100px inset gray;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.surprise-item img{
+    height: 40vh;
+    scale: 1.1;
+    filter: drop-shadow(0px 0px 10px,gold);
+    transition: all ease 0.5s;
+    z-index: 9;
+}
+
+.toy-bg{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.677);
+    position: fixed;
+    display: none;
+    z-index: 8;
+    text-align: center;
+    padding-top: 4vh;
+    color: white;
+}
+
+.close{
+    display: none;
+}
+
+@media (max-width:768px) {
+    body{
+        overflow: hidden;
+    }
+
+    .toy-bg{
+        height: 110%;
+        padding: 40px 10px;
+    }
+
+    .surprise-item img{
+        height: 35vh;
+    }
+
+    .toy-bg h1{
+        font-size: 3.5vh;
+    }
+    
+
+}
+
+.send-btn{
+    background-color: royalblue;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 4%;
+    right: 4%;
+    z-index: 999;
+}
+
+.form-container {
+    /* background-color: #fff; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.message-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    position: absolute;
+    top: 20%;
+    right: 2%;
+    width: 30%;
+    z-index: 999;
+}
+
+.message-form label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.message-form input, .message-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.message-form input:focus, .message-form textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.message-form button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.message-form button:hover {
+    background-color: #45a049;
+}
+
+.generated-link {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    z-index: 999;
+}
+
+.generated-link p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.generated-link a {
+    display: block;
+    font-size: 14px;
+    color: #1e90ff;
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+
+.generated-link button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.generated-link button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    
+.send-btn{
+    background-color: royalblue;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 90%;
+    right: 25%;
+    z-index: 999;
+}
+
+    .wrapper{
+        padding: 20px 20px;
+        overflow-x: hidden;
+    }
+    .form-container {
+        padding: 15px;
+        max-width: 90%;
+        flex-direction: column;
+        gap: 20vh;
+    }
+
+    
+.generated-link {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    z-index: 999;
+    position: absolute;
+}
+
+    .message-form input, .message-form textarea, .message-form button {
+        font-size: 16px;
+    }
+    
+.message-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    position: absolute;
+    width: 100%;
+}
+
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 10px;
+        max-width: 95%;
+    }
+
+    .message-form input, .message-form textarea, .message-form button {
+        font-size: 14px;
+    }
+}

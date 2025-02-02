@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinder Joy Surprise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div class="wrapper">
+            
+            <div class="toy-bg">
+                <h1></h1>
+                
+            </div>
+            <div class="header">
+                <h1></h1> 
+            </div>
+            
+            <div class="kinder-joy-container">
+             
+                <div class="cover" id="cover">
+                    <img src="./images/cover.avif" alt="">
+                </div>
+                <div class="surprise-item">
+                    <img src="./images/harry.png" alt="">
+                    <p>click on toy</p>
+                </div>
+            </div>
+            
+            <div class="form-container">
+<button class="send-btn">Send Your Loved One</button>
+
+<div class="message-form" style="display: none;">
+    <label for="from">From:</label>
+    <input type="text" id="from" placeholder="Your name">
+    <label for="to">To:</label>
+    <input type="text" id="to" placeholder="Loved one's name">
+    <label for="message">Message:</label>
+    <textarea id="message" placeholder="Write your message"></textarea>
+    <button id="submit-btn">Submit</button>
+</div>
+
+<div class="generated-link" style="display: none;">
+    <p>Share this link with your loved one:</p>
+    <a href="#" id="link" target="_blank">Generated Link</a>
+    <button id="copyBtn">Copy Link</button>
+</div>
+
+            </div>
+        </div>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js" integrity="sha512-G7Wpe/pbg+zjyyM9HgQY6kacLAy+580lmA8DUXmZtioTI5FkaCRoLOaCLoeblrZABs7KZFD03cfSV9j7nmwxfw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+</body>
+</html>
