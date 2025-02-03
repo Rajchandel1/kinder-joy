@@ -47,6 +47,8 @@ var box = select(".surprise-item")
 
 var clickTxt = select(".surprise-item p")
 
+var header = select(".header")
+
 var toys = [
     { img: "./images/boy bookmark.png",
       name: "Cedric Bookmark",
@@ -159,7 +161,7 @@ toy.addEventListener("click",()=>{
             cover.classList.add("close");
     msg.textContent = toys[randomItem].message
     clickTxt.classList.add("close")
-
+  header.classList.add("close")
     launchConfetti()
 })
 
@@ -180,29 +182,37 @@ function launchConfetti() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const header = select(".header h1");
+  const header = select(".header h1");
 
-    // Handle toy page view when link is clicked
-    if (window.location.search) {
-        const params = new URLSearchParams(window.location.search);
-        const from = params.get("from") || "Anonymous";
-        const to = params.get("to") || "Someone special";
-        const message = params.get("message") || "You have received a special Kinder Joy surprise!";
+  if (window.location.search) {
+      const params = new URLSearchParams(window.location.search);
+      const uuid = params.get("id");
 
-        // Display the 'from' and 'to' names and the message on the toy page
-        ToyName.textContent = `${from} to ${to}`;
-        msg.textContent = message;
+      if (uuid) {
+          // Retrieve the message from localStorage using the UUID
+          const messageData = JSON.parse(localStorage.getItem(uuid));
 
-        // Dynamically update the header
-        header.innerHTML = `This is For You ${to} from ${from}:<br> ${message}`; // Change the header text
+          if (messageData) {
+              const { from, to, message } = messageData;
 
-        // Trigger confetti
-        launchConfetti();
-    }
+              // Display the 'from' and 'to' names and the message on the toy page
+              ToyName.textContent = `${from} to ${to}`;
+              msg.textContent = message;
+
+              // Dynamically update the header
+              header.innerHTML = `This is For You ${to} from ${from}:<br> ${message}`;
+
+              // Trigger confetti
+              launchConfetti();
+          } else {
+              console.error("Message not found.");
+          }
+      } else {
+          console.error("Invalid URL.");
+      }
+  }
 });
 
-
-// Select elements
 const sendBtn = select(".send-btn");
 const messageForm = select(".message-form");
 const submitBtn = select("#submit-btn");
@@ -214,43 +224,53 @@ const messageInput = select("#message");
 
 let generatedLink = "";
 
-// Show form on button click
 sendBtn.addEventListener("click", () => {
-    messageForm.style.display = "block"; // Show the input form
-    sendBtn.style.display = "none"; // Hide the send button
+  messageForm.style.display = "block";
+  sendBtn.style.display = "none";
 });
 
-// Submit button click handler
 submitBtn.addEventListener("click", () => {
-    const from = fromInput.value || "Anonymous"; // Default from name
-    const to = toInput.value || "Someone special"; // Default to name
-    let message = messageInput.value || "You have received a special Kinder Joy surprise!"; // Default message if empty
+  const from = fromInput.value || "Anonymous";
+  const to = toInput.value || "Someone special";
+  let message = messageInput.value || "You have received a special Kinder Joy surprise!";
 
-    // Create a unique URL with query parameters for 'from', 'to', and 'message'
-    const url = new URL(window.location.href);
-    url.searchParams.set("from", from);
-    url.searchParams.set("to", to);
-    url.searchParams.set("message", message);
+  // Generate a unique identifier
+  const uuid = generateUUID();
 
-    // Set the generated link and show it to the user
-    generatedLink = url.toString();
-    linkElement.href = generatedLink;
-    linkElement.textContent = generatedLink
-    linkSection.style.display = "block"; // Show generated link
-   
+  // Store the message in localStorage with the UUID as the key
+  const messageData = { from, to, message };
+  localStorage.setItem(uuid, JSON.stringify(messageData));
+
+  // Create a unique URL with the UUID as a query parameter
+  const url = new URL(window.location.href);
+  url.searchParams.set("id", uuid);
+
+  // Set the generated link and show it to the user
+  generatedLink = url.toString();
+  linkElement.href = generatedLink;
+  linkElement.textContent = "Send Love";
+  linkSection.style.display = "block";
 });
 
 // Add event listener for the copy button
 const copyBtn = select("#copyBtn");
 
 copyBtn.addEventListener("click", () => {
-    const linkText = linkElement.href; // Get the current URL from the link
+  const linkText = linkElement.href;
 
-    // Use the Clipboard API to copy the link to the clipboard
-    navigator.clipboard.writeText(linkText).then(() => {
-        alert("Link copied to clipboard!"); // Notify the user that the link has been copied
-    }).catch((error) => {
-        console.error("Failed to copy the link: ", error);
-    });
+  // Use the Clipboard API to copy the link to the clipboard
+  navigator.clipboard.writeText(linkText).then(() => {
+    copyBtn.textContent = "Copied!!"
+    copyBtn.style.backgroundColor = "#45a049"
+    }).catch((error) => {  }).catch((error) => {
+      console.error("Failed to copy the link: ", error);
+  });
 });
 
+function generateUUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0,
+          v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+  });
+}
