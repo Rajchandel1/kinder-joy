@@ -49,6 +49,8 @@ var clickTxt = select(".surprise-item p")
 
 var header = select(".header")
 
+var dragtxt = select(".drag")
+
 var toys = [
     { img: "./images/boy bookmark.png",
       name: "Cedric Bookmark",
@@ -162,6 +164,7 @@ toy.addEventListener("click",()=>{
     msg.textContent = toys[randomItem].message
     clickTxt.classList.add("close")
   header.classList.add("close")
+  dragtxt.classList.add("close")
     launchConfetti()
 })
 
